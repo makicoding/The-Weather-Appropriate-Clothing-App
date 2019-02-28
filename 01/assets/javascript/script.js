@@ -8,7 +8,7 @@ var unixTravelDate = moment(travelDate, 'YYYY.MM.DD').unix();
 var destination = "london"; //hard coded destination until front end form is complete.
 var coordinates
 var formDestination;
-
+var proxy = 'https://cors-anywhere.herokuapp.com/'
 
 $.ajax({
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${destination}&key=AIzaSyBQl-QMKAwNvWndyQcRfqlz39Ke6xZcb5w`,
@@ -21,7 +21,8 @@ $.ajax({
 
 
     $.ajax({
-        url: `https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${unixTravelDate}`,
+        url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${unixTravelDate}`,
+        headers: {'Access-Control-Allow-Origin': '*'},
         method: "GET"
       }).then(function(results) {
           console.log($(results))
