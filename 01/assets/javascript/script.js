@@ -3,41 +3,94 @@
 
 
 
-var travelDate = "2020.01.01" //hard coded date, to be updated once date picker is implemented.
-var unixTravelDate = moment(travelDate, 'YYYY.MM.DD').unix();
-var destination = "london"; //hard coded destination until front end form is complete.
-var coordinates
-var formDestination;
-var proxy = 'https://cors-anywhere.herokuapp.com/'
 
-$.ajax({
+var destination;
+var units;
+var travelDate;
+
+var datePicker = function () {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left',
+    timeZone: 'utc'
+  }, function (start, end, label) {
+    var dateArray = [];
+    while (start <= end) {
+      dateArray.push(moment(start).unix());
+      start = (moment(start).add(1, 'days'));
+    }
+    travelDate = dateArray;
+  });
+}
+
+
+var userInput = function () {
+  var userName = $("#inputName").val();
+  var userGender = $("#inputGender").val();
+  destination = $("#inputLocation").val();
+  units = $("#inputUnits").val();
+}
+
+
+
+var setWeather = function () {
+  var proxy = 'https://cors-anywhere.herokuapp.com/'
+  $.ajax({
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${destination}&key=AIzaSyBQl-QMKAwNvWndyQcRfqlz39Ke6xZcb5w`,
     method: "Get"
-}).then(function(results){
+  }).then(function (results) {
     console.log(results);
-    coordinates = results.results[0].geometry.location;
-    formDestination = results.results[0].formatted_address;
-    
+    var coordinates = results.results[0].geometry.location;
+    var formDestination = results.results[0].formatted_address;
+    $(`<div id="outputLocation">Expected temperature range in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv")
 
 
-    $.ajax({
-        url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${unixTravelDate}`,
-        headers: {'Access-Control-Allow-Origin': '*'},
+    for (i = 0; i < travelDate.length; i++) {
+      console.log(travelDate[i]);
+      $.ajax({
+        url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${travelDate[i]}?units=${units}`,
+        headers: { 'Access-Control-Allow-Origin': '*' },
         method: "GET"
-      }).then(function(results) {
-          console.log($(results))
-          var weatherData = results.daily.data[0];
-          $(
-            `<div>Expected temperature range in ${formDestination} is going to be: <div>
-            <div>High temperature: ${weatherData.temperatureHigh} °F </div>
-            <div>Low Temperature: ${weatherData.temperatureLow} °F </div>`
-          ).appendTo("#weather")
-    
+      }).then(function (results) {
+
+        console.log($(results))
+        var weatherData = results.daily.data[0];
+        var unitsSign;
+        
+        if (units === "us") {
+          unitsSign = "°F"
+        }
+        else (
+          unitsSign = "°C"
+        )
+
+        var weatherDay = moment.unix(results.currently.time).format("YYYY-MM-DD");
+
+
+        $(`<br>
+          <div id="outputDate">Weather Date: ${weatherDay}</div>
+      
+          <div id="outputTempHi">High temperature: ${weatherData.temperatureHigh} ${unitsSign} </div>
+          <div id="outputTempLo">Low Temperature: ${weatherData.temperatureLow} ${unitsSign} </div>
+          <div id="outputSummary"> ${weatherData.summary}</div>
+          <br>`
+        ).appendTo("#weatherInfoDiv")
+
       });
-})
+
+    }
+
+  })
+
+}
+
+var handleSubmit = function(){
+  userInput();
+  setWeather();
+}
 
 
-
-
-
+$(document).ready(function () {
+  datePicker();
+  $('#buttonSubmit').click(handleSubmit);
+});
 
