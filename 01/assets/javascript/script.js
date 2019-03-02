@@ -61,7 +61,7 @@ var setWeather = function() {
 
         var weatherDay = moment
           .unix(results.currently.time)
-          .format("YYYY-MM-DD");
+          .format("MM/DD/YYYY");
 
         var object = {
           date: weatherDay,
@@ -93,6 +93,7 @@ var populateWeatherDate = function() {
 };
 
 var handleSubmit = function() {
+  $("#inputDiv").hide();
   userInput();
   setWeather();
   setTimeout(function(){ populateWeatherDate()}, 500);
