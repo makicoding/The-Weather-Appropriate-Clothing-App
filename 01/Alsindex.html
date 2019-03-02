@@ -11,9 +11,8 @@
 
     <!-- jquery CDN -->
     <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-    crossorigin="anonymous"></script>
+ src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
@@ -28,28 +27,22 @@
     <div class="container">
         <h3>Weather Appropriate Clothing App</h3>
     
-        <div class="row1">
             <h5>Search Parameters</h5>
-            <br>
-            <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gender
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Male</a>
-                            <a class="dropdown-item" href="#">Female</a>
+            <select>
+                    <option selected disabled>Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
         </div>
-
-        <br>
-        <br>    
-        <div class="form-group">
-            <label for="exampleDropdownFormPassword1">Date:</label>
-                <input type="text" class="form-control" id="date" placeholder="">
-        </div>
+    <br>
+    <br>
 
         <div class="form-group">
-            <label for="exampleDropdownFormPassword1"> Location:</label>
-                <input type="text" class="form-control" id="location" placeholder="">
-        </div>
+                <p>Location:</p>
+                    <input type="text" class="form-control" id="location" placeholder="">
+            </div>
+   
+        <p>Date: <input type=date id="datepicker"></p>
 
         <button id="search">
                 Submit
@@ -62,14 +55,12 @@
         <br>
 
         <div class="row2">
-                <h7><B><U>Clothings Suggestions</U></B></h7>
+                <h7><B><U>Clothing Suggestions</U></B></h7>
                 <div class="clothingLister">
             </div>
         </div>
-    
-    </div>
-    </div>
 
-    <script src="javascript/clothing.js"></script>
+
+    <script src="assets/javascript/clothing.js"></script>
 </body>
 </html>

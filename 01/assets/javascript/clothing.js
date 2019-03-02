@@ -1,9 +1,10 @@
 $(document).ready(function(){
-  
+
   $("button").on("click", function () {
-console.log($("#date").val());
 console.log($("#location").val());
 
+
+/*
     var queryURL = "https://api.macys.com/v4/catalog/search?searchphrase=search_keywords" + subject + "&api-key=cdkjnhkyu9mu5k38m8pp62y7";
 
 $.ajax({
@@ -51,5 +52,6 @@ $.ajax({
             
         };
     });
+    */
 });
 });
