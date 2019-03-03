@@ -8,6 +8,10 @@ var destination;
 var units;
 var travelDate;
 
+
+
+
+
 var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
     opens: 'left',
@@ -32,60 +36,66 @@ var userInput = function () {
 
 
 
-var setWeather = function () {
+var setWeather = async function () {
   var proxy = 'https://cors-anywhere.herokuapp.com/'
-  $.ajax({
+  var weatherArray = [];
+  var results = await $.ajax({
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${destination}&key=AIzaSyBQl-QMKAwNvWndyQcRfqlz39Ke6xZcb5w`,
     method: "Get"
-  }).then(function (results) {
-    console.log(results);
-    var coordinates = results.results[0].geometry.location;
-    var formDestination = results.results[0].formatted_address;
-    $(`<div id="outputLocation">Expected temperature range in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv")
+  });
+  // console.log(results);
+  var coordinates = results.results[0].geometry.location;
+  var formDestination = results.results[0].formatted_address;
+  $(`<div id="outputLocation">Expected temperature range in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv");
 
 
-    for (i = 0; i < travelDate.length; i++) {
-      console.log(travelDate[i]);
-      $.ajax({
-        url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${travelDate[i]}?units=${units}`,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        method: "GET"
-      }).then(function (results) {
+  for (i = 0; i < travelDate.length; i++) {
+    var innerRes = await $.ajax({
+      url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${travelDate[i]}?units=${units}`,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      method: "GET"
+    });
+    var weatherData = innerRes.daily.data[0];
 
-        console.log($(results))
-        var weatherData = results.daily.data[0];
-        var unitsSign;
-        
-        if (units === "us") {
-          unitsSign = "°F"
-        }
-        else (
-          unitsSign = "°C"
-        )
+    var weatherDay = moment.unix(innerRes.currently.time).format("YYYY-MM-DD");
 
-        var weatherDay = moment.unix(results.currently.time).format("YYYY-MM-DD");
+    var object = {
+      date: weatherDay,
+      tempHi: weatherData.temperatureHigh,
+      tempLo: weatherData.temperatureLow,
+      summary: weatherData.summary,
+      icon: weatherData.icon,
+    };
 
-
-        $(`<br>
-          <div id="outputDate">Weather Date: ${weatherDay}</div>
-      
-          <div id="outputTempHi">High temperature: ${weatherData.temperatureHigh} ${unitsSign} </div>
-          <div id="outputTempLo">Low Temperature: ${weatherData.temperatureLow} ${unitsSign} </div>
-          <div id="outputSummary"> ${weatherData.summary}</div>
-          <br>`
-        ).appendTo("#weatherInfoDiv")
-
-      });
-
-    }
-
-  })
+    weatherArray.push(object);
+  }
+  return weatherArray;
 
 }
 
-var handleSubmit = function(){
+
+
+
+
+var populateWeatherDate = function (x) {
+  console.log(x);
+  x.forEach((element) => {
+    $(`<br>
+    <div id="outputDate">Date: ${element.date}</div>
+    <div id="outputTempHi">Temperature High: ${element.tempHi}</div>
+    <div id="outputTempLo">Temperature Low: ${element.tempLo}</div>
+    <div id="outputSummary"> ${element.summary}</div>
+    <div id="icon">${element.icon}</div>
+    <br>
+    `).appendTo("#weatherInfoDiv");
+  });
+}
+
+var handleSubmit = async function () {
   userInput();
-  setWeather();
+  var weeatherArray = await setWeather();
+  populateWeatherDate(weeatherArray);
+
 }
 
 
