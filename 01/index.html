@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- JS Links -->
-    <script src=“https://unpkg.com/axios/dist/axios.min.js“></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"> </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -45,7 +44,7 @@
 
         <div id="appMainContent1">
 
-            <div id="instructions1">Enter the following information and the app will tell you what you should wear and pack for your specified dates and city.</div>
+            <div id="instructions1">Enter the following information and the app will tell you what you should include in your wear-items and packing list for your specified location and dates.</div>
 
             <div class="container" id="inputDiv">
                 <form>
@@ -66,10 +65,10 @@
                     <select name="units" id="inputUnits">
                         <option value="us">°Fahrenheit</option>
                         <option value="si">°Celsius</option>
-                    -->
                     </select>
-
                     <br>
+                    -->
+                    
                     <input type="button" id="buttonSubmit" value="Submit"> <br>
 
                 </form>
@@ -90,16 +89,24 @@
 
         <div id="appMainContent2">
 
-            <button id="buttonReset1">Reset</button>
+            <div id="buttonResetContainer1">
+                <button id="buttonReset1">Reset App</button>
+            </div>
 
             <div class="container" id="weatherInfoDiv"></div>
 
-            <div id="instructions2">Here is a recommendation of what you should wear and pack.  
+            <div id="instructions2">Here is a recommendation of what you should include in your wear-items and packing list.  
                                     <br>
-                                    Click on an icon to populate purchase suggestions from H&M.
+                                    Click on an icon to open purchase suggestions on Amazon.
             </div>
 
             <div id="iconsAppearHereDiv"></div>
+
+            <div id="spacer1"></div>
+
+            <div id="buttonResetContainer2">
+                <button id="buttonReset2">Reset App</button>
+            </div>
 
         </div>
 
