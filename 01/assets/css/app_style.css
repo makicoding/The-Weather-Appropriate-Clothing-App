@@ -133,6 +133,32 @@
     left: 20px;
 }
 
+#buttonReset2 {
+    position: relative;
+    left: 20px;
+}
+
+#buttonResetContainer1 {
+    width: 700px;
+
+    margin: 0px 0px 20px 0px;
+
+    background-color: grey;
+    position: relative;
+    left: 0px;
+}
+
+#buttonResetContainer2 {
+    width: 700px;
+
+    margin: 0px 0px 20px 0px;
+
+    background-color: grey;
+    position: relative;
+    left: 0px;
+    float: left;
+}
+
 #weatherInfoDiv {
     width: 660px;
     padding: 0px 20px 0px 20px;
