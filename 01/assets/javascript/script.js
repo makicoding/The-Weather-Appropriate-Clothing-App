@@ -240,7 +240,6 @@ console.log("pants: " + pants);
 console.log("winterJacketMen: " + winterJacketMen);
 console.log("winterCoatWomen: " + winterCoatWomen);
 
-
 // --------------------------------------------------------------------------------
 // IF STATEMENTS FOR WEATHER
 
