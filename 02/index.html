@@ -1,12 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+
+    <!-- JS Links -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"> </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     
+
+    <!-- Favicon -->
+    <!--
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    -->
+
+    <!-- Google Fonts -->
+
+    <!-- CSS links -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="assets/css/background_style.css">
+    <link rel="stylesheet" href="assets/css/app_style.css">
+
+    <title>Weather Appropriate Clothing App</title>
+</head>
+
+<body>
+
+    <!-- Background Image -->
+    <img class="backgroundImageContainer" src="assets/images/3000pxHigh_PSQuality8/3000px_Sunset_01.jpg" alt="Background"></img>
+
+
+    <!-- App Container 1 -->
+    <div id="appContainer1">
+
+        <div id="whiteBackplate1"></div>
+
+        <p id="appHeader">WeatherTastic</p>
+
+        <div id="appMainContent1">
+
+            <div id="instructions1">Enter the following information and the app will tell you what you should include in your wear-items and packing list for your specified location and dates.</div>
+
+            <div class="container" id="inputDiv">
+                <form>
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="inputGender">
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                    <br>
+
+                    <label for="travelDestination">Location:</label>
+                    <input type="text" id="inputLocation" name="travelDestination" placeholder="City, Country"> </input><br>
+                    <label for="daterange">Dates:</label>
+                    <input type="text" id="inputDates" name="daterange" value="" /> <br>
+                    <!--
+                    <label for="units">Temperature:</label>
+                    <select name="units" id="inputUnits">
+                        <option value="us">°Fahrenheit</option>
+                        <option value="si">°Celsius</option>
+                    </select>
+                    <br>
+                    -->
+                    
+                    <input type="button" id="buttonSubmit" value="Submit"> <br>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- App Container 2 -->
+    <div id="appContainer2">
+
+        <div id="whiteBackplate2"></div>
+
+        <p id="appHeader">WeatherTastic</p>
+
+        <div id="appMainContent2">
+
+            <div id="buttonResetContainer1">
+                <button id="buttonReset1">Reset App</button>
+            </div>
+
+            <div class="container" id="weatherInfoDiv"></div>
+
+            <div id="instructions2">Here is a recommendation of what you should include in your wear-items and packing list.  
+                                    <br>
+                                    Click on an icon to open purchase suggestions on Amazon.
+            </div>
+
+            <div id="iconsAppearHereDiv"></div>
+
+            <div id="spacer1"></div>
+
+            <div id="buttonResetContainer2">
+                <button id="buttonReset2">Reset App</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="assets/javascript/script.js"></script>
+
 </body>
+
 </html>
