@@ -5,9 +5,7 @@ $("#buttonReset1").click(function(){
   document.location.reload(true);
 });
 // GLOBAL VARIABLES
-
 // Gender
-
 //var userGender = document.getElementById("inputGender").value;
 var userGender = ""
 
