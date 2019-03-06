@@ -1,0 +1,45 @@
+/* ---------------------------------------- */
+.backgroundImageContainer {
+    width: 100%;
+    height: auto;
+
+    padding: 0;
+    margin: 0;
+    
+    position: fixed;    /* THIS IS ESSENTIALFOR MEDIA QUERY TO WORK AND TO BE ABLE TO SET HEIGHT TO 100% */    
+    top: 0px;
+    left: 0px;
+
+}
+
+
+/* ---------------------------------------- */
+/* ---------------------------------------- */
+/* MEDIA QUERIES */
+
+/* When Screen Size Max-Width is 1030px */
+/* (1024px is viewport width of iPad Pro in vertical) */
+
+@media screen and (max-width: 1030px) {
+
+    .backgroundImageContainer {
+        width: auto;
+        height: 100%;
+
+        transform: translate(-390px, 0px);
+    }
+
+}
+
+/* ---------------------------------------- */
+/* When Screen Size Max-Width is 500px */
+/* (375px is viewport width of iPhone X in vertical) */
+
+@media screen and (max-width: 500px) {
+
+    .backgroundImageContainer {
+        width: auto;
+        height: 100%;
+
+        transform: translate(-400px, 0px);
+    }

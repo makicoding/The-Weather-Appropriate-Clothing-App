@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- JS Links -->
+    <script src=“https://unpkg.com/axios/dist/axios.min.js“></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"> </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
 
     <!-- Favicon -->
     <!--
@@ -22,7 +24,8 @@
     <!-- CSS links -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/background_style.css">
+    <link rel="stylesheet" href="assets/css/app_style.css">
 
     <title>Weather Appropriate Clothing App</title>
 </head>
@@ -32,77 +35,76 @@
     <!-- Background Image -->
     <img class="backgroundImageContainer" src="assets/images/3000pxHigh_PSQuality8/3000px_Sunset_01.jpg" alt="Background"></img>
 
-    <!-- White Backplate 1 -->
-    <div id="whiteBackplate1"></div>
-
-    <!-- White Backplate 2 -->
-    <!--
-    <div id="whiteBackplate2"></div>
-    -->
 
     <!-- App Container 1 -->
     <div id="appContainer1">
 
+        <div id="whiteBackplate1"></div>
+
         <p id="appHeader">WeatherTastic</p>
 
-        <div id="instructions1">Enter the following information and the app will tell you what you should wear and pack for your specified dates and city.</div>
+        <div id="appMainContent1">
 
-        <div class="container" id="inputDiv">
-            <form>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="inputName" placeholder="First name"></input><br>
-                <label for="gender">Gender</label>
-                <select name="gender" id="inputGender">
-                    <option value="">Select Gender</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                </select>
-                <br>
-                <label for="travelDestination">Travel Destination</label>
-                <input type="text" id="inputLocation" name="travelDestination" placeholder="City, Country"></input><br>
-                <label for="daterange">Travel Dates</label>
-                <input type="text" id="inputDates" name="daterange" value="" /><br>
-                <label for="units">Prefered units of temperature</label>
-                <select name="units" id="inputUnits">
-                    <option value="us">°Fahrenheit</option>
-                    <option value="si">°Celsius</option>
-                </select>
+            <div id="instructions1">Enter the following information and the app will tell you what you should wear and pack for your specified dates and city.</div>
 
-                <input type="button" id="buttonSubmit" value="Submit">
+            <div class="container" id="inputDiv">
+                <form>
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="inputGender">
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                    <br>
 
-            </form>
+                    <label for="travelDestination">Location:</label>
+                    <input type="text" id="inputLocation" name="travelDestination" placeholder="City, Country"> </input><br>
+                    <label for="daterange">Dates:</label>
+                    <input type="text" id="inputDates" name="daterange" value="" /> <br>
+
+                    <!--<label for="units">Temperature:</label>
+                    <select name="units" id="inputUnits">
+                        <option value="us">°Fahrenheit</option>
+                        <option value="si">°Celsius</option> -->
+
+                    </select>
+
+                    <br>
+                    <input type="button" id="buttonSubmit" value="Submit"> <br>
+
+                </form>
+
+            </div>
 
         </div>
 
     </div>
+
 
     <!-- App Container 2 -->
-    <!--
     <div id="appContainer2">
+
+        <div id="whiteBackplate2"></div>
 
         <p id="appHeader">WeatherTastic</p>
 
-        <button id="buttonReset">Reset</button>
+        <div id="appMainContent2">
 
-        <div id="weatherInfoDiv">
+            <button id="buttonReset1">Reset</button>
+
+            <div class="container" id="weatherInfoDiv"></div>
+
+            <div id="instructions2">Here is a recommendation of what you should wear and pack.  
+                                    <br>
+                                    Click on an icon to populate purchase suggestions from Amazon.
+            </div>
+
+            <div id="iconsAppearHereDiv"></div>
+
         </div>
-
-        <div id="instructions2">Here is a recommendation of what you should wear and pack.  
-                                <br>
-                                Click on an icon to populate purchase suggestions from Google Shopping.
-        </div>
-
-        <div id="iconsAppearHereDiv">
-
-        </div>
-
-        <div id="clothingAppearHereDiv">Clothing will appear here</div>
 
     </div>
-    -->
-    
-    
-    <div class="container" id="weatherInfoDiv"></div>
+
 
     <!-- JavaScript -->
     <script src="assets/javascript/script.js"></script>

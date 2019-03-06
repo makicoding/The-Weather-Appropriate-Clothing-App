@@ -1,17 +1,3 @@
-.backgroundImageContainer {
-    width: 100%;
-    height: auto;
-
-    padding: 0;
-    margin: 0;
-    
-    position: fixed;    /* THIS IS ESSENTIALFOR MEDIA QUERY TO WORK AND TO BE ABLE TO SET HEIGHT TO 100% */    
-    top: 0px;
-    left: 0px;
-
-}
-
-
 /* ---------------------------------------- */
 /* App Header */
 
@@ -61,16 +47,25 @@
     transform: translate(-150px, -240px);
 }
 
+#appMainContent1 {
+    width: 300px;
+    
+    position: absolute;
+    top: 80px;
+}
+
 #instructions1 {
     padding: 0px 20px 0px 20px;
+    border: 0;
+    margin: 0px 0px 20px 0px;
 
     color: #4047EF;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.3;
 
 
-    position: absolute;
-    top: 80px;
+    position: relative;
+    top: 0px;
 }
 
 #inputDiv {
@@ -79,9 +74,13 @@
 
     background-color: red;
     /* change background-color to show placement of Div */
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    line-height: 1.5;
 
-    position: absolute;
-    top: 180px;
+    position: relative;
+    top: 0px;
 }
 
 
@@ -90,13 +89,15 @@
 
 #whiteBackplate2 {
     width: 700px;
-    height: 100%;
+    height: 2000px;
 
     border: 0;
 
     background-color: white;
 
-    position: fixed;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-350px, 0px);
@@ -104,19 +105,31 @@
 
 #appContainer2 {
     width: 700px;
-    height: 100%;
+    height: 2000px;
 
     border: 0;
 
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-350px, 0px);
+
+    z-index: 2; 
 }
 
-#buttonReset {
+#appMainContent2 {
+    width: 700px;
+    height: 2000px;
+    
+    background-color: lightblue;
+    /* change background-color to show placement of Div */
+
     position: absolute;
     top: 80px;
+}
+
+#buttonReset1 {
+    position: relative;
     left: 20px;
 }
 
@@ -127,33 +140,29 @@
     background-color: red;
     /* change background-color to show placement of Div */
 
-    position: absolute;
-    top: 120px;
+    position: relative;
 }
 
 #instructions2 {
-    padding: 0px 20px 0px 20px;
+    padding: 0px 20px 20px 20px;
 
     color: #4047EF;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.3;
 
-
-    position: absolute;
-    top: 240px;
+    position: relative;
 }
 
 #iconsAppearHereDiv {
     width: 700px;
-    height: 250px;
+    height: 0px;
 
     padding: 0px;
 
-    background-color: red;
+    background-color: green;
     /* change background-color to show placement of Div */
 
-    position: absolute;
-    top: 300px;
+    position: relative;
 }
 
 .iconDiv {
@@ -161,7 +170,6 @@
     height: 130px;
 
     margin: 5px 5px 5px 5px;
-
     border: 1px solid #a1a1a1;
     border-radius: 10px;
 
@@ -185,7 +193,6 @@
     height: 80px;
 
     border: 1px solid #a1a1a1;
-
     margin: 4px 0px 1px 0px;
 
     background-color: white;
@@ -196,54 +203,43 @@
 
 .iconText {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#spacer1 {
+    width: 700px;
+    height: 20px;
+
+    background-color: pink;
+
+    position: relative;
+    top: 0px;
+    float: left;
 }
 
 #clothingAppearHereDiv {
     width: 660px;
-    height: 250px;
+    height: 300px;
 
     padding: 20px 20px 0px 20px;
 
-    background-color: red;
+    background-color: orange;
     /* change background-color to show placement of Div */
 
-    position: absolute;
-    top: 620px;
+    position: relative;
+    top: 0px;
+    float: left;
 }
-
-
 
 
 /* ---------------------------------------- */
 /* ---------------------------------------- */
 /* MEDIA QUERIES */
 
-/* When Screen Size Max-Width is 1030px */
-/* (1024px is viewport width of iPad Pro in vertical) */
-
-@media screen and (max-width: 1030px) {
-
-    .backgroundImageContainer {
-        width: auto;
-        height: 100%;
-
-        transform: translate(-390px, 0px);
-    }
-
-}
-
-/* ---------------------------------------- */
 /* When Screen Size Max-Width is 500px */
 /* (375px is viewport width of iPhone X in vertical) */
 
 @media screen and (max-width: 500px) {
-
-    .backgroundImageContainer {
-        width: auto;
-        height: 100%;
-
-        transform: translate(-400px, 0px);
-    }
 
     #whiteBackplate2 {
         width: 300px;
@@ -253,7 +249,7 @@
     
         background-color: white;
     
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 50%;
         transform: translate(-150px, 0px);
