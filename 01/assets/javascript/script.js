@@ -1,10 +1,11 @@
 console.log("JavaScript connected!");
 
-// --------------------------------------------------------------------------------
+// Reset button - refreshes page to home page------------------------
+$("#buttonReset1").click(function(){
+  document.location.reload(true);
+});
 // GLOBAL VARIABLES
-
 // Gender
-
 //var userGender = document.getElementById("inputGender").value;
 var userGender = ""
 
@@ -101,10 +102,13 @@ var setWeather = async function () {
 
     var weatherDay = moment.unix(innerRes.currently.time).format("YYYY-MM-DD");
 
+    var celsius = (weatherData.temperatureHigh-32) / 1.8;
+
     var object = {
       date: weatherDay,
       tempHi: weatherData.temperatureHigh,
       tempLo: weatherData.temperatureLow,
+      temperatureConverter: celsius, 
       summary: weatherData.summary,
       icon: weatherData.icon,
     };
@@ -115,13 +119,18 @@ var setWeather = async function () {
 
 }
 
-
 var populateWeatherDate = function (x) {
+  function temperatureConverter(weatherData_temperatureHigh) {
+    weatherData.temperatureHigh = parseFloat(weatherData.temperatureHigh);
+    document.getElementById("outputCelsius").innerHTML = (weatherData.temperatureHigh-32) / 1.8;
+   }
+   
   x.forEach((element) => {
     $(`<br>
     <div id="outputDate">Date: ${element.date}</div>
     <div id="outputTempHi">Temperature High: ${element.tempHi}</div>
     <div id="outputTempLo">Temperature Low: ${element.tempLo}</div>
+    <div id="outputCelsius">Celsius: ${element.temperatureConverter}</div>
     <div id="outputSummary"> ${element.summary}</div>
     <br>
     `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary
@@ -230,7 +239,6 @@ console.log("sweater: " + sweater);
 console.log("pants: " + pants);
 console.log("winterJacketMen: " + winterJacketMen);
 console.log("winterCoatWomen: " + winterCoatWomen);
-
 
 // --------------------------------------------------------------------------------
 // IF STATEMENTS FOR WEATHER
