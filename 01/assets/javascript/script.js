@@ -120,9 +120,6 @@ var setWeather = async function () {
   return weatherArray;
 
 }
-// Code for Time Converter
-// celsius: temperatureConverter,
-// 
 
 var populateWeatherDate = function (x) {
   function temperatureConverter(weatherData_temperatureHigh) {
