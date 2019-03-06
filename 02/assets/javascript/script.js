@@ -218,11 +218,16 @@ var setWeather = async function () {
     var weatherData = innerRes.daily.data[0];
 
     var weatherDay = moment.unix(innerRes.currently.time).format("YYYY-MM-DD");
-
+    
+    var celsiusHigh = Math.round((weatherData.temperatureHigh-32) / 1.8) ;
+    var celsiusLow = Math.round((weatherData.temperatureLow-32) / 1.8);
+    
     var object = {
       date: weatherDay,
-      tempHi: weatherData.temperatureHigh,
-      tempLo: weatherData.temperatureLow,
+      tempHi: Math.round(weatherData.temperatureHigh),
+      tempLo: Math.round(weatherData.temperatureLow),
+      celsiusHigh: celsiusHigh, 
+      celsiusLow: celsiusLow,
       summary: weatherData.summary,
       icon: weatherData.icon,
     };
@@ -245,8 +250,8 @@ var populateWeatherDate = function (x) {
   x.forEach((element) => {
     $(`<br>
     <div id="outputDate">Date: ${element.date}</div>
-    <div id="outputTempHi">Temperature High: ${element.tempHi}</div>
-    <div id="outputTempLo">Temperature Low: ${element.tempLo}</div>
+    <div id="outputTempHi">Temperature High: ${element.tempHi} °F  /  ${element.celsiusHigh} °C</div>
+    <div id="outputTempLo">Temperature Low: ${element.tempLo} °F  /  ${element.celsiusLow} °C</div>
     <div id="outputSummary"> ${element.summary}</div>
     <br>
     `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary

@@ -102,13 +102,15 @@ var setWeather = async function () {
 
     var weatherDay = moment.unix(innerRes.currently.time).format("YYYY-MM-DD");
 
-    var celsius = (weatherData.temperatureHigh-32) / 1.8;
+    var celsiusHigh = Math.round((weatherData.temperatureHigh-32) / 1.8) ;
+    var celsiusLow = Math.round((weatherData.temperatureLow-32) / 1.8);
 
     var object = {
       date: weatherDay,
-      tempHi: weatherData.temperatureHigh,
-      tempLo: weatherData.temperatureLow,
-      temperatureConverter: celsius, 
+      tempHi: Math.round(weatherData.temperatureHigh),
+      tempLo: Math.round(weatherData.temperatureLow),
+      celsiusHigh: celsiusHigh, 
+      celsiusLow: celsiusLow,
       summary: weatherData.summary,
       icon: weatherData.icon,
     };
@@ -120,25 +122,26 @@ var setWeather = async function () {
 }
 
 var populateWeatherDate = function (x) {
-  function temperatureConverter(weatherData_temperatureHigh) {
-    weatherData.temperatureHigh = parseFloat(weatherData.temperatureHigh);
-    document.getElementById("outputCelsius").innerHTML = (weatherData.temperatureHigh-32) / 1.8;
-   }
+  // function temperatureConverter(weatherData_temperatureHigh) {
+  //   weatherData.temperatureHigh = parseFloat(weatherData.temperatureHigh);
+  //   document.getElementById("outputCelsius").innerHTML = (weatherData.temperatureHigh-32) / 1.8;
+  //  }
    
   x.forEach((element) => {
+    console.log(element);
     $(`<br>
     <div id="outputDate">Date: ${element.date}</div>
-    <div id="outputTempHi">Temperature High: ${element.tempHi}</div>
-    <div id="outputTempLo">Temperature Low: ${element.tempLo}</div>
-    <div id="outputCelsius">Celsius: ${element.temperatureConverter}</div>
+    <div id="outputTempHi">Temperature High: ${element.tempHi} °F</div>
+    <div id="outputTempLo">Temperature Low: ${element.tempLo} °F</div>
+    <div id="outputCelsius">Celsius High: ${element.celsiusHigh} °C</div>
+    <div id="outputCelsius">Celsius Low: ${element.celsiusLow} °C</div>
     <div id="outputSummary"> ${element.summary}</div>
     <br>
     `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary
-    $("#appContainer2").show();
-    $("#appContainer1").hide();
-    
-                                      
-  });
+    });
+
+  $("#appContainer2").show();
+  $("#appContainer1").hide();
 }
 
 
