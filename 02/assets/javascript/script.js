@@ -173,12 +173,11 @@ var userInput = function () {
   destination = $("#inputLocation").val();
   units = $("#inputUnits").val();
   if (!userGender || !destination || !travelDate) {
-    $(`<div>We're missing some search criteria. Please complete required fields.</div>`).appendTo("#missingInfoMessage");
+    $(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
   }
   else {
     handleSubmit();
   }
-
 }
 
 
@@ -206,7 +205,7 @@ var setWeather = async function () {
   // console.log(results);
   var coordinates = results.results[0].geometry.location;
   var formDestination = results.results[0].formatted_address;
-  $(`<div id="outputLocation">Expected temperature range in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv");
+  $(`<div id="outputLocation">Expected weather in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv");
 
 
   for (i = 0; i < travelDate.length; i++) {

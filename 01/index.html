@@ -19,6 +19,7 @@
     -->
 
     <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Bowlby+One+SC|Bungee|Bungee+Inline|Carter+One|Fjalla+One|Fugaz+One|Galada|Knewave|Lobster|Major+Mono+Display|Monoton|Oleo+Script|Pattaya|Poiret+One|Racing+Sans+One|Shrikhand|Timmana|Unica+One|Yellowtail" rel="stylesheet">
 
     <!-- CSS links -->
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -49,7 +50,7 @@
             <div class="container" id="inputDiv">
                 <form>
                     <label for="gender">Gender:</label>
-                    <select name="gender" id="inputGender">
+                    <select name="gender" class="inputFields" id="inputGender">
                         <option value="">Select Gender</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
@@ -57,19 +58,13 @@
                     <br>
 
                     <label for="travelDestination">Location:</label>
-                    <input type="text" id="inputLocation" name="travelDestination" placeholder="City, Country"> </input><br>
+                    <input type="text" class="inputFields" id="inputLocation" name="travelDestination" placeholder="City, Country"> </input><br>
                     <label for="daterange">Dates:</label>
-                    <input type="text" id="inputDates" name="daterange" value="" /> <br>
-
-                    <!--<label for="units">Temperature:</label>
-                    <select name="units" id="inputUnits">
-                        <option value="us">°Fahrenheit</option>
-                        <option value="si">°Celsius</option>
-                    </select>
-                    <br>
-                    -->
+                    <input type="text" class="inputFields" id="inputDates" name="daterange" value="" /> <br>
                     
                     <input type="button" id="buttonSubmit" value="Submit"> <br>
+
+                    <div id="missingInfoMessage"></div>
 
                 </form>
 

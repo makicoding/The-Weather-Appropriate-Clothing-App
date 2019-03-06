@@ -1,12 +1,10 @@
 console.log("JavaScript connected!");
 
-// Reset button - refreshes page to home page------------------------
-$("#buttonReset1").click(function(){
-  document.location.reload(true);
-});
+// --------------------------------------------------------------------------------
 // GLOBAL VARIABLES
+
 // Gender
-//var userGender = document.getElementById("inputGender").value;
+
 var userGender = ""
 
 // ------------------------------
@@ -89,7 +87,7 @@ var setWeather = async function () {
   // console.log(results);
   var coordinates = results.results[0].geometry.location;
   var formDestination = results.results[0].formatted_address;
-  $(`<div id="outputLocation">Expected temperature range in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv");
+  $(`<div id="outputLocation">Expected weather in ${formDestination} is going to be: <div>`).appendTo("#weatherInfoDiv");
 
 
   for (i = 0; i < travelDate.length; i++) {
@@ -131,10 +129,8 @@ var populateWeatherDate = function (x) {
     console.log(element);
     $(`<br>
     <div id="outputDate">Date: ${element.date}</div>
-    <div id="outputTempHi">Temperature High: ${element.tempHi} °F</div>
-    <div id="outputTempLo">Temperature Low: ${element.tempLo} °F</div>
-    <div id="outputCelsius">Celsius High: ${element.celsiusHigh} °C</div>
-    <div id="outputCelsius">Celsius Low: ${element.celsiusLow} °C</div>
+    <div id="outputTempHi">Temperature High: ${element.tempHi} °F  /  ${element.celsiusHigh} °C</div>
+    <div id="outputTempLo">Temperature Low: ${element.tempLo} °F  /  ${element.celsiusLow} °C</div>
     <div id="outputSummary"> ${element.summary}</div>
     <br>
     `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary
@@ -242,6 +238,7 @@ console.log("sweater: " + sweater);
 console.log("pants: " + pants);
 console.log("winterJacketMen: " + winterJacketMen);
 console.log("winterCoatWomen: " + winterCoatWomen);
+
 
 // --------------------------------------------------------------------------------
 // IF STATEMENTS FOR WEATHER
@@ -466,7 +463,7 @@ var itemSnowBoots = {
 
 // Create Icons
 
-function createIcon(clothing) {                                                 // For the function createIcon, we pass through clothing
+function createIcon(clothing) {                                               // For the function createIcon, we pass through clothing
   var clothingIcon = document.createElement("div");                           // Create <div> element
   clothingIcon.setAttribute("class", "iconDiv");                              // Set Attribute for clothingIcon to have class="iconDiv"
   clothingIcon.setAttribute("data-clothingkeyword", clothing.keyword);        // Set Attribute for clothingIcon to have a data attribute: data-clothingkeyword (clothingkeyword must be in lowercase for this to work!)
@@ -480,7 +477,7 @@ function createIcon(clothing) {                                                 
   clothingIcon.appendChild(clothingIconImage);                                // Append clothingIconImage to clothingIcon
   clothingIcon.appendChild(clothingIconTextContainer);                        // Append clothingIconText to clothingIcon                    
   document.getElementById("iconsAppearHereDiv").appendChild(clothingIcon);    // Append clothingIcon to iconAppearHereDiv
-  clothingIcon.addEventListener("click", shopping);                         // When clothingIcon is clicked, the function hmShopping is called    
+  clothingIcon.addEventListener("click", shopping);                           // When clothingIcon is clicked, the function hmShopping is called    
 }
 
 
