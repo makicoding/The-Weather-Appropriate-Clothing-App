@@ -2,8 +2,11 @@ console.log("JavaScript connected!");
 
 // --------------------------------------------------------------------------------
 // GLOBAL VARIABLES
-
 var userGender = ""
+var destination;
+var units;
+var travelDate;
+
 
 // ------------------------------
 // Clothing items (set to false to begin with)
@@ -148,20 +151,7 @@ var accessories = [
 ]
 
 // --------------------------------------------------------------------------------
-// FUNCTION TO CALL DARKSKY WEATHER API & GOOGLE MAPS API
-
-// Dark Sky API key: b9dc6901023a8337df6a5c58be197ba0
-// Google Maps API Key: AIzaSyBrwwwbvDLEEipFn_nr9sUtcVWqRugE2OA
-
-
-// Darksky icon (machine readable text summary):
-// clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night, hail, thunderstorm, tornado
-
-
-var destination;
-var units;
-var travelDate;
-
+// Handing of user input
 
 var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
@@ -182,7 +172,26 @@ var userInput = function () {
   userGender = $("#inputGender").val();
   destination = $("#inputLocation").val();
   units = $("#inputUnits").val();
+  if (!userGender || !destination || !travelDate) {
+    $(`<div>We're missing some search criteria. Please complete required fields.</div>`).appendTo("#missingInfoMessage");
+  }
+  else {
+    handleSubmit();
+  }
+
 }
+
+
+// --------------------------------------------------------------------------------
+// FUNCTION TO CALL DARKSKY WEATHER API & GOOGLE MAPS API
+
+// Dark Sky API key: b9dc6901023a8337df6a5c58be197ba0
+// Google Maps API Key: AIzaSyBrwwwbvDLEEipFn_nr9sUtcVWqRugE2OA
+
+
+// Darksky icon (machine readable text summary):
+// clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night, hail, thunderstorm, tornado
+
 
 
 var setWeather = async function () {
@@ -243,8 +252,8 @@ var populateWeatherDate = function (x) {
     `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary
     $("#appContainer2").show();
     $("#appContainer1").hide();
-    
-                                      
+
+
   });
 }
 
@@ -252,19 +261,19 @@ var populateWeatherDate = function (x) {
 
 
 var handleSubmit = async function () {
-  userInput();
+  
   var weatherArray = await setWeather();
   populateWeatherDate(weatherArray[0]);
   //populateRecommendation(weatherArray)
   getRecommendation(weatherArray[1], weatherArray[2])
   getAccessories(weatherArray[0])
-
+  $(document.body).on('click','.iconDiv', shopping);
 }
 
 
 $(document).ready(function () {
   datePicker();
-  $('#buttonSubmit').click(handleSubmit);
+  $('#buttonSubmit').click(userInput);
   $("#appContainer1").show();
   $("#appContainer2").hide();
 });
@@ -274,12 +283,11 @@ $(document).ready(function () {
 
 //Populate recommendations:
 
-var insertClotingDOM = function(x){
-  $(`<div id = "clotingIcon" class="iconDiv" data-clotingkeyword="${x.item}">
+var insertClotingDOM = function (x) {
+  $(`<div class="iconDiv" data-clothingkeyword="${x.item}">
   <img src="${x.image}" class="iconImage">
   <div class="iconText">${x.item}</div>`).appendTo("#iconsAppearHereDiv");
-  document.getElementById("clotingIcon").addEventListener("click", shopping);
-
+  // document.getElementById("clothingIcon").addEventListener("click", shopping);
 }
 
 //Populate recommendations based on temperature
@@ -303,23 +311,23 @@ var getRecommendation = function (lowTemperature, highTemperature) {
 
 //Populate recommendations based on weather icons/conditions such as snow, rain, etc. and not temperature.
 
-var getAccessories = function (array){
+var getAccessories = function (array) {
   var weatherIcons = [];
-  array.forEach(element =>{
-  weatherIcons.push(element.icon)
+  array.forEach(element => {
+    weatherIcons.push(element.icon)
   })
-  var weatherIconsUnique = weatherIcons.filter(function(item, index){
+  var weatherIconsUnique = weatherIcons.filter(function (item, index) {
     return weatherIcons.indexOf(item) >= index;
   });
 
-  weatherIconsUnique.forEach(condition=>{
-    accessories.forEach(accessory =>{
-      accessory.condition.forEach(state=>{
-        if(condition === state){
+  weatherIconsUnique.forEach(condition => {
+    accessories.forEach(accessory => {
+      accessory.condition.forEach(state => {
+        if (condition === state) {
           insertClotingDOM(accessory);
         }
       })
-      
+
     })
   })
 }
@@ -332,7 +340,7 @@ var getAccessories = function (array){
 function shopping() {
 
   var searchKeyword = this.getAttribute("data-clothingkeyword");  // here "this" refers to "clothingIcon"       
-                                                                      
+
   console.log(searchKeyword);
 
   window.open(`https://www.amazon.com/s?k=${searchKeyword}`);     // remember to change "" to `` and then use ${} and insert var searchKeyword in between
@@ -343,10 +351,10 @@ function shopping() {
 // --------------------------------------------------------------------------------
 // RESET BUTTONS
 
-var resetButton1 = document.getElementById("buttonReset1"); 
+var resetButton1 = document.getElementById("buttonReset1");
 resetButton1.addEventListener("click", appReset);                 // When the user clicks id="buttonsReset1", the function appReset is called
 
-var resetButton2 = document.getElementById("buttonReset2"); 
+var resetButton2 = document.getElementById("buttonReset2");
 resetButton2.addEventListener("click", appReset);                 // When the user clicks id="buttonsReset2", the function appReset is called
 
 
