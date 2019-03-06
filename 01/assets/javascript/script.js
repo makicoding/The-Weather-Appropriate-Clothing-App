@@ -61,7 +61,7 @@ var travelDate;
 
 var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
-    opens: 'left',
+    opens: 'left',                              // Can change this to left, center, or right
     timeZone: 'utc'
   }, function (start, end, label) {
     var dateArray = [];
@@ -96,7 +96,7 @@ var setWeather = async function () {
 
   for (i = 0; i < travelDate.length; i++) {
     var innerRes = await $.ajax({
-      url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${travelDate[i]}?units=us`,   // you could also change units=${units} to use the temperature selector fahrenheit and celsius.  At the moment units=us to run the calculations in fahrenheit
+      url: `${proxy}https://api.darksky.net/forecast/b9dc6901023a8337df6a5c58be197ba0/${coordinates.lat},${coordinates.lng},${travelDate[i]}?units=us`,   // you could also change units=${units} to use the temperature selector fahrenheit and celsius.  At the moment units=us to run the calculations in fahrenheit.  To run the calculations in celsius, units=si
       headers: { 'Access-Control-Allow-Origin': '*' },
       method: "GET"
     });
@@ -132,12 +132,12 @@ var populateWeatherDate = function (x) {
     <div id="outputTempHi">Temperature High: ${element.tempHi}</div>
     <div id="outputTempLo">Temperature Low: ${element.tempLo}</div>
     <div id="outputSummary"> ${element.summary}</div>
-    <div id="icon">${element.icon}</div>
     <br>
-    `).appendTo("#weatherInfoDiv");
+    `).appendTo("#weatherInfoDiv");                           // Add <div id="icon">${element.icon}</div> just after <div id="outputSummary"> ${element.summary}</div> if wanting to display machine readable text summary
     $("#appContainer2").show();
     $("#appContainer1").hide();
-
+    
+                                      
   });
 }
 
@@ -167,7 +167,7 @@ $(document).ready(function () {
 var populateRecommendation = function(weatherArray){
 
 for (var k = 0; k < weatherArray.length; k++) {
-  if (weatherArray[k].tempLo >= 68) {
+  if (weatherArray[k].tempLo >= 72) {
 
       if (userGender === "female") {
           summerHatWomen = true;
@@ -181,7 +181,7 @@ for (var k = 0; k < weatherArray.length; k++) {
 
   }
 
-  else if ((weatherArray[k].tempLo >= 59) && (weatherArray[k].tempLo < 68)) {
+  else if ((weatherArray[k].tempLo >= 65) && (weatherArray[k].tempLo < 72)) {
 
       if (userGender === "female") {
           sweater = true;
@@ -195,7 +195,7 @@ for (var k = 0; k < weatherArray.length; k++) {
 
   }
   
-  else if ((weatherArray[k].tempLo > 50) && (weatherArray[k].tempLo < 59)) {
+  else if ((weatherArray[k].tempLo > 50) && (weatherArray[k].tempLo < 65)) {
 
       if (userGender === "female") {
           pants = true;
@@ -556,6 +556,21 @@ function shopping() {
                                                                       
   console.log(searchKeyword);
 
-  window.open(`https://www.amazon.com/s?k=${searchKeyword}`);   // remember to change "" to `` and then use ${} and insert var searchKeyword in between
+  window.open(`https://www.amazon.com/s?k=${searchKeyword}`);     // remember to change "" to `` and then use ${} and insert var searchKeyword in between
 
 };
+
+
+// --------------------------------------------------------------------------------
+// RESET BUTTONS
+
+var resetButton1 = document.getElementById("buttonReset1"); 
+resetButton1.addEventListener("click", appReset);                 // When the user clicks id="buttonsReset1", the function appReset is called
+
+var resetButton2 = document.getElementById("buttonReset2"); 
+resetButton2.addEventListener("click", appReset);                 // When the user clicks id="buttonsReset2", the function appReset is called
+
+
+function appReset() {
+  location.reload();                                              // Reloads entire webpage
+}
