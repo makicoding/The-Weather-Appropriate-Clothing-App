@@ -158,6 +158,7 @@ var datePicker = function () {
     opens: 'center',                              // Can change this to left, center, or right
     timeZone: 'utc'
   }, function (start, end, label) {
+    $("#inputDates").css("color", "black");
     var dateArray = [];
     while (start <= end) {
       dateArray.push(moment(start).unix());
