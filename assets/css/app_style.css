@@ -94,10 +94,6 @@
     color: gray;
 }
 
-.inputFields[name="daterange"] {
-    color: gray;
-}
-
 #buttonSubmit {
     padding: 6px 20px 5px 20px;
     border: 0;
