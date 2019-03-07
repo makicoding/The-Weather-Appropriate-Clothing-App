@@ -180,7 +180,8 @@ var userInput = function () {
   destination = $("#inputLocation").val();
   units = $("#inputUnits").val();
   if (!userGender || !destination || !travelDate) {
-    $(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
+    //$(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
+    $("#missingInfoMessage").html("Please complete all required fields.");
   }
   else {
     handleSubmit();
