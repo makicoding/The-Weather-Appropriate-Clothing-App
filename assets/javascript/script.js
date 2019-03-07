@@ -167,7 +167,7 @@ var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
     opens: 'center',                              // Can change this to left, center, or right
     timeZone: 'utc',
-    autoApply: true                             // (true/false) Hide the apply and cancel buttons, and automatically apply a new date range as soon as two dates are clicked.
+    autoApply: true                               // (true/false) Hide the apply and cancel buttons, and automatically apply a new date range as soon as two dates are clicked.
   }, function (start, end, label) {
     var dateArray = [];
     while (start <= end) {
