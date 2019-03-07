@@ -1,4 +1,4 @@
-console.log("JavaScript connected!");
+//console.log("JavaScript connected!");
 
 // --------------------------------------------------------------------------------
 // GLOBAL VARIABLES
@@ -9,7 +9,8 @@ var travelDate;
 
 
 // ------------------------------
-// Clothing items (set to false to begin with)
+// Clothing
+
 var wardrobe = [
   {
     item: "Summer Hat",
@@ -127,7 +128,9 @@ var wardrobe = [
   },
 ];
 
-// All the different clothing options available: "Sunscreen", "Sunglasses", etc. 
+
+// Accessories
+
 var accessories = [
   {
     item: "Sunscreen",
@@ -158,14 +161,14 @@ var accessories = [
 ]
 
 // --------------------------------------------------------------------------------
-// Handing of user input
+// Handling of user input
 
 var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
     opens: 'center',                              // Can change this to left, center, or right
-    timeZone: 'utc'
+    timeZone: 'utc',
+    autoApply: true                             // (true/false) Hide the apply and cancel buttons, and automatically apply a new date range as soon as two dates are clicked.
   }, function (start, end, label) {
-    $("#inputDates").css("color", "black");
     var dateArray = [];
     while (start <= end) {
       dateArray.push(moment(start).unix());
@@ -181,7 +184,6 @@ var userInput = function () {
   destination = $("#inputLocation").val();
   units = $("#inputUnits").val();
   if (!userGender || !destination || !travelDate) {
-    //$(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
     $("#missingInfoMessage").html("Please complete all required fields.");
   }
   else {
@@ -191,15 +193,14 @@ var userInput = function () {
 
 
 // --------------------------------------------------------------------------------
-// FUNCTION TO CALL DARKSKY WEATHER API & GOOGLE MAPS API
+// FUNCTION TO CALL GOOGLE MAPS API & DARKSKY WEATHER API
 
-// Dark Sky API key: b9dc6901023a8337df6a5c58be197ba0
 // Google Maps API Key: AIzaSyBrwwwbvDLEEipFn_nr9sUtcVWqRugE2OA
+// Dark Sky API key: b9dc6901023a8337df6a5c58be197ba0
 
 
 // Darksky icon (machine readable text summary):
 // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night, hail, thunderstorm, tornado
-
 
 
 var setWeather = async function () {
@@ -266,11 +267,8 @@ var populateWeatherDate = function (x) {
     $("#appContainer2").show();
     $("#appContainer1").hide();
 
-
   });
 }
-
-
 
 
 var handleSubmit = async function () {
@@ -293,17 +291,16 @@ $(document).ready(function () {
 
 
 // --------------------------------------------------------------------------------
-
-//Populate recommendations:
+// Populate recommendations
 
 var insertClotingDOM = function (x) {
   $(`<div class="iconDiv" data-clothingkeyword="${x.item}">
   <img src="${x.image}" class="iconImage">
   <div class="iconText">${x.item}</div>`).appendTo("#iconsAppearHereDiv");
-  // document.getElementById("clothingIcon").addEventListener("click", shopping);
 }
 
-//Populate recommendations based on temperature
+
+// Populate recommendations based on temperature
 
 var getRecommendation = function (lowTemperature, highTemperature) {
 
@@ -321,6 +318,7 @@ var getRecommendation = function (lowTemperature, highTemperature) {
     }
   });
 }
+
 
 //Populate recommendations based on weather icons/conditions such as snow, rain, etc. and not temperature.
 
@@ -346,7 +344,6 @@ var getAccessories = function (array) {
 }
 
 
-
 // --------------------------------------------------------------------------------
 // CALL FUNCTION SHOPPING
 
@@ -354,7 +351,7 @@ function shopping() {
 
   var searchKeyword = this.getAttribute("data-clothingkeyword");  // here "this" refers to "clothingIcon"       
 
-  console.log(searchKeyword);
+  //console.log(searchKeyword);
 
   window.open(`https://www.amazon.com/s?k=${searchKeyword}`);     // remember to change "" to `` and then use ${} and insert var searchKeyword in between
 

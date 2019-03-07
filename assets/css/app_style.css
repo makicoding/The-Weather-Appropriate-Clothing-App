@@ -90,18 +90,31 @@
     font-size: 15px;
 }
 
-.inputFields[name="daterange"] {
-    color: gray;
+::placeholder {
+    color: grey;
+    opacity: 1;             /* Firefox */
+}
+  
+:-ms-input-placeholder {    /* Internet Explorer 10-11 */
+   color: grey;
+}
+  
+::-ms-input-placeholder {   /* Microsoft Edge */
+   color: grey;
+}
+
+#inputDates[name="daterange"] {
+    color: grey;
 }
 
 #buttonSubmit {
-    padding: 6px 20px 5px 20px;
+    padding: 6px 25px 5px 25px;
     border: 0;
     border-radius: 5px;
     margin: 10px 0px 0px 0px;
 
     background-color: rgb(241, 33, 192);
-
+    
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -112,6 +125,8 @@
     outline: 1;
 
     display: inline-block;
+
+    -webkit-appearance: none;
 }
 
 #buttonSubmit:hover {
@@ -122,6 +137,18 @@
 
 /* ---------------------------------------- */
 /* App Container 2 */
+
+#appContainer2 {
+    width: 720px;
+    height: 100%;
+
+    border: 0;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-360px, 0px);
+}
 
 #whiteBackplate2 {
     width: 720px;
@@ -135,18 +162,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     */
     
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-360px, 0px);
-}
-
-#appContainer2 {
-    width: 720px;
-    height: 100%;
-
-    border: 0;
-
     position: absolute;
     top: 0;
     left: 50%;
@@ -294,7 +309,7 @@
     border: 1px solid #a1a1a1;
     border-radius: 10px;
 
-    background-color: #ffe371;
+    background-color: #FFE51A;
     text-align: center;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -340,20 +355,6 @@
     float: left;
 }
 
-#clothingAppearHereDiv {
-    width: 660px;
-    height: 300px;
-
-    padding: 20px 20px 0px 20px;
-
-    background-color: orange;
-    /* change background-color to show placement of Div */
-
-    position: relative;
-    top: 0px;
-    float: left;
-}
-
 
 /* ---------------------------------------- */
 /* ---------------------------------------- */
@@ -364,17 +365,15 @@
 
 @media screen and (max-width: 500px) {
 
+    #appContainer2 {
+        width: 300px;
+
+        transform: translate(-150px, 0px);
+    }    
+
     #whiteBackplate2 {
         width: 300px;
-        height: 100%;
-    
-        border: 0;
-    
-        background-color: white;
-    
-        position: absolute;
-        top: 0;
-        left: 50%;
+
         transform: translate(-150px, 0px);
     }
 
@@ -383,10 +382,6 @@
         
         background-color: none;
         /* change background-color to show placement of Div */
-    
-        position: absolute;
-        top: 80px;
-        left: 210px;
     }
 
     #buttonReset1 {
@@ -421,17 +416,10 @@
 
     #weatherInfoDiv {
         width: 260px;
-
-        position: relative;
-        left: 0px;
     }
 
     #instructions2 {
         width: 260px;
-
-        position: relative;
-        left: 0px;
-
     }
 
     #iconsAppearHereDiv {
@@ -443,11 +431,8 @@
         left: 0px;
     }
 
-    #clothingAppearHereDiv {
-        width: 260px;
-
-        position: relative;
-        left: 0px;
+    #spacer1 {
+        width: 300px;
     }
 
 }
