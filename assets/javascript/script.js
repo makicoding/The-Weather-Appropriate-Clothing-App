@@ -155,7 +155,7 @@ var accessories = [
 
 var datePicker = function () {
   $('input[name="daterange"]').daterangepicker({
-    opens: 'left',                              // Can change this to left, center, or right
+    opens: 'center',                              // Can change this to left, center, or right
     timeZone: 'utc'
   }, function (start, end, label) {
     var dateArray = [];
