@@ -216,7 +216,7 @@ var setWeather = async function () {
     });
     var weatherData = innerRes.daily.data[0];
 
-    var weatherDay = moment.unix(innerRes.currently.time).format("YYYY-MM-DD");
+    var weatherDay = moment.unix(innerRes.currently.time).format("dddd, MMMM Do YYYY");
     
     var celsiusHigh = Math.round((weatherData.temperatureHigh-32) / 1.8) ;
     var celsiusLow = Math.round((weatherData.temperatureLow-32) / 1.8);
