@@ -19,6 +19,13 @@ var wardrobe = [
     gender: "female",
   },
   {
+    item: "T-Shirt",
+    image: "assets/images/icons/100px_iconTShirt.png",
+    lowerBound: 68,
+    upperBound: undefined,
+    gender: undefined,
+  },
+  {
     item: "Pants",
     image: "assets/images/icons/100px_iconPants.png",
     lowerBound: undefined,
@@ -173,7 +180,8 @@ var userInput = function () {
   destination = $("#inputLocation").val();
   units = $("#inputUnits").val();
   if (!userGender || !destination || !travelDate) {
-    $(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
+    //$(`<div>Please complete all required fields.</div>`).appendTo("#missingInfoMessage");
+    $("#missingInfoMessage").html("Please complete all required fields.");
   }
   else {
     handleSubmit();
