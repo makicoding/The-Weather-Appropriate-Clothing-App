@@ -15,7 +15,7 @@ var wardrobe = [
   {
     item: "Summer Hat",
     image: "assets/images/icons/100px_iconSummerHatWomen.png",
-    lowerBound: 68,
+    lowerBound: 72,
     upperBound: undefined,
     gender: "female",
   },
@@ -30,14 +30,14 @@ var wardrobe = [
     item: "Pants",
     image: "assets/images/icons/100px_iconPants.png",
     lowerBound: undefined,
-    upperBound: 67,
+    upperBound: 71,
     gender: undefined,
   },
   {
     item: "Sweater",
     image: "assets/images/icons/100px_iconSweater.png",
-    lowerBound: undefined,
-    upperBound: 67,
+    lowerBound: 65,
+    upperBound: 71,
     gender: undefined,
   },
 
@@ -45,64 +45,64 @@ var wardrobe = [
     item: "Winter Hat",
     image: "assets/images/icons/100px_iconWinterHat.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: undefined,
   },
   {
     item: "Gloves",
     image: "assets/images/icons/100px_iconGloves.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: undefined,
   },
   {
     item: "Scarf",
     image: "assets/images/icons/100px_iconScarf.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: undefined,
   },
   {
     item: "Thermal Underwear Bottom",
     image: "assets/images/icons/100px_iconThermalUnderwearBottom.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: undefined,
   },
   {
     item: "Thermal Underwear Top",
     image: "assets/images/icons/100px_iconThermalUnderwearTop.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: undefined,
   },
   {
     item: "Men's Winter Jacket",
     image: "assets/images/icons/100px_iconWinterJacketMen.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: "male",
   },
   {
     item: "Women's Winter Coat",
     image: "assets/images/icons/100px_iconWinterCoatWomen.png",
     lowerBound: undefined,
-    upperBound: 45,
+    upperBound: 50,
     gender: "female",
   },
 
   {
     item: "Men's Jacket",
     image: "assets/images/icons/100px_iconJacketMen.png",
-    lowerBound: 45,
-    upperBound: 67,
+    lowerBound: 51,
+    upperBound: 64,
     gender: "male",
   },
   {
     item: "Women's Jacket",
     image: "assets/images/icons/100px_iconJacketWomen.png",
-    lowerBound: 45,
-    upperBound: 67,
+    lowerBound: 51,
+    upperBound: 64,
     gender: "female",
   },
   {
@@ -164,11 +164,13 @@ var accessories = [
 // Handling of user input
 
 var datePicker = function () {
+
   $('input[name="daterange"]').daterangepicker({
     opens: 'center',                              // Can change this to left, center, or right
     timeZone: 'utc',
     autoApply: true                               // (true/false) Hide the apply and cancel buttons, and automatically apply a new date range as soon as two dates are clicked.
   }, function (start, end, label) {
+    $("#inputDates").css("color", "black");
     var dateArray = [];
     while (start <= end) {
       dateArray.push(moment(start).unix());
