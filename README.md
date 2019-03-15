@@ -1,6 +1,6 @@
 # WeatherTastic App
 
-[Click here to view deployed app](https://makicoding.github.io/The-Weather-Appropriate-Clothing-App/index.html)
+<a href="https://makicoding.github.io/The-Weather-Appropriate-Clothing-App/index.html" target="_blank">Click here to view deployed app</a>
 
 An App that gives a recommendation of what to wear and pack based on the weather.
 
